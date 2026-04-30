@@ -8,14 +8,34 @@
   </head>
   <body>
     <section id="log"></section>
+    <section id="form-container"></section>
 
     <script type="module">
       import { Log } from "./component/Log/script.js";
+      import { MovieForm } from "./component/MovieForm/script.js";
+      import { DataMovie } from "./data/dataMovie.js";
 
       window.C = {};
 
+      C.handlerAddMovie = async function(event) {
+        event.preventDefault();
+        V.renderLog("Envoi du formulaire en cours...");
+
+        try {
+          let form = document.getElementById('movie-form');
+          let formData = new FormData(form);
+
+          let response = await DataMovie.add(formData);
+          V.renderLog("Succès : " + response.message);
+          form.reset();
+        } catch (error) {
+          V.renderLog("Erreur : " + error.message);
+        }
+      };
+
       C.start = function () {
         V.renderLog("Démarrage de l'application");
+        V.renderMovieForm();
       };
 
       window.V = {};
@@ -23,6 +43,14 @@
       V.renderLog = function (txt) {
         let content = document.querySelector("#log");
         content.innerHTML = Log.format(txt);
+      };
+
+      V.renderMovieForm = function () {
+        let formContainer = document.querySelector("#form-container");
+        formContainer.innerHTML = MovieForm.format();
+
+        // Attach event listener after rendering
+        document.getElementById('movie-form').addEventListener('submit', C.handlerAddMovie);
       };
 
       C.start();

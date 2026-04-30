@@ -5,6 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./component/MovieDetail/style.css" />
+    <link rel="stylesheet" href="./component/MovieCategory/style.css" />
   </head>
 
   <body>
@@ -14,6 +16,10 @@
 
     <script type="module">
       import { NavBar } from "./component/NavBar/script.js";
+      import { DataMovie } from "./data/dataMovie.js";
+      import { MovieDetail } from "./component/MovieDetail/script.js";
+      import { Movie } from "./component/Movie/script.js";
+      import { MovieCategory } from "./component/MovieCategory/script.js";
 
       // Controleur
       // Rappel, écrire window.C plutôt que let C est nécessaire pour tester depuis la console du navigateur
@@ -26,8 +32,25 @@
         );
       };
 
+      C.handlerList = function () {
+        V.renderMovies();
+      };
+
+      C.handlerDetail = async function (movieId) {
+        let content = document.querySelector("#content");
+        content.innerHTML = `<div class="font-sans" style="padding: 2rem; text-align: center;">Chargement du film...</div>`;
+        try {
+          let movie = await DataMovie.requestMovieDetails(movieId);
+          content.innerHTML = MovieDetail.format(movie);
+        } catch (error) {
+          content.innerHTML = `<div class="font-sans" style="padding: 2rem; text-align: center; font-weight: 600;">Impossible de charger les détails du film.</div>`;
+          console.error(error);
+        }
+      };
+
       C.start = function () {
         V.renderNavBar("C.handlerAbout()");
+        V.renderMovies();
       };
 
       // Vue (contient tout ce qui est relatif à l'affichage)
@@ -42,11 +65,28 @@
        */
       V.renderNavBar = function (hAbout) {
         let header = document.querySelector("#header");
-        header.innerHTML = NavBar.format(hAbout);
+        header.innerHTML = NavBar.format(hAbout, "C.handlerList()");
+      };
+
+      V.renderMovies = async function () {
+        let content = document.querySelector("#content");
+        content.innerHTML = `<div class="font-sans" style="padding: 2rem; text-align: center;">Chargement des films...</div>`;
+
+        try {
+          let categories = await DataMovie.requestMovies();
+          let html = '';
+          for (let category of categories) {
+            html += MovieCategory.format(category);
+          }
+          content.innerHTML = html;
+        } catch (error) {
+          content.innerHTML = `<div class="font-sans" style="padding: 2rem; text-align: center;
+              font-weight: 600;">Impossible de charger les films pour le moment.</div>`;
+          console.error(error);
+        }
       };
 
       C.start(); // Démarre l'application
     </script>
   </body>
 </html>
-<script type="module"></script>

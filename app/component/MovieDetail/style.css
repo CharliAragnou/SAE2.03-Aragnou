@@ -1,0 +1,35 @@
+.movie-detail {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.movie-detail__hero {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 280px 1fr;
+  align-items: start;
+}
+
+.movie-detail__poster {
+  width: 100%;
+  display: block;
+}
+
+.movie-detail__summary h1 {
+  margin: 0 0 1rem;
+}
+
+.movie-detail__summary p {
+  margin: 0.5rem 0;
+}
+
+.movie-detail__description,
+.movie-detail__trailer {
+  margin-top: 1.5rem;
+}
+
+.movie-detail__video iframe {
+  width: 100%;
+  min-height: 360px;
+}

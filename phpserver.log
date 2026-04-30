@@ -1,0 +1,4 @@
+[Tue Apr 28 16:06:48 2026] PHP 8.3.24 Development Server (http://127.0.0.1:8002) started
+[Tue Apr 28 16:06:49 2026] 127.0.0.1:41652 Accepted
+[Tue Apr 28 16:06:49 2026] 127.0.0.1:41652 [200]: POST /server/script.php?todo=addmovie
+[Tue Apr 28 16:06:49 2026] 127.0.0.1:41652 Closing

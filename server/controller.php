@@ -25,3 +25,62 @@ function readMoviesController(){
     $movies = getAllMovies();
     return $movies;
 }
+
+function readMovieDetailController(){
+    if (!isset($_REQUEST['id']) || !is_numeric($_REQUEST['id'])) {
+        return false;
+    }
+
+    $movieId = (int)$_REQUEST['id'];
+    $movie = getMovieById($movieId);
+    return $movie;
+}
+
+function addMovieController(){
+    // Validate required fields
+    $required = ['title', 'director', 'year', 'length', 'description', 'category', 'image'];
+    foreach ($required as $field) {
+        if (!isset($_POST[$field]) || empty(trim($_POST[$field]))) {
+            return ['success' => false, 'message' => "Champ obligatoire manquant : $field"];
+        }
+    }
+
+    // Validate year
+    $year = (int)$_POST['year'];
+    if ($year < 1900 || $year > 2030) {
+        return ['success' => false, 'message' => 'Année invalide'];
+    }
+
+    // Validate length
+    $length = (int)$_POST['length'];
+    if ($length <= 0) {
+        return ['success' => false, 'message' => 'Durée invalide'];
+    }
+
+    // Validate min_age if provided
+    $min_age = isset($_POST['min_age']) ? (int)$_POST['min_age'] : 0;
+    if ($min_age < 0 || $min_age > 18) {
+        return ['success' => false, 'message' => 'Restriction d\'âge invalide'];
+    }
+
+    // Prepare data
+    $movieData = [
+        'name' => trim($_POST['title']),
+        'director' => trim($_POST['director']),
+        'year' => $year,
+        'length' => $length,
+        'description' => trim($_POST['description']),
+        'id_category' => (int)$_POST['category'],
+        'image' => trim($_POST['image']),
+        'trailer' => isset($_POST['trailer']) ? trim($_POST['trailer']) : null,
+        'min_age' => $min_age
+    ];
+
+    // Call model
+    $result = addMovie($movieData);
+    if ($result) {
+        return ['success' => true, 'message' => 'Le film a été ajouté avec succès.'];
+    } else {
+        return ['success' => false, 'message' => 'Erreur lors de l\'ajout du film.'];
+    }
+}

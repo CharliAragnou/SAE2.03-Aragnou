@@ -1,6 +1,6 @@
 
 
-let templateFile = await fetch('./component/Log/template.html');
+let templateFile = await fetch(new URL("./template.html", import.meta.url));
 let template = await templateFile.text();
 
 let templateLi = "<li>[{{time}}] {{txt}}</li>";
