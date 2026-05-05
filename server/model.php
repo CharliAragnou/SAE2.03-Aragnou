@@ -19,7 +19,7 @@ define("DBLOGIN", "aragnou1");
 define("DBPWD", "aragnou1");
 
 
-function getAllMovies(){
+function getAllMovies($age = 0){
     // Connexion à la base de données
     try {
         $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
@@ -29,13 +29,14 @@ function getAllMovies(){
     }
     
     // Requête SQL pour récupérer les films avec leurs catégories, groupés par catégorie
-    $sql = "SELECT c.id AS category_id, c.name AS category_name, " .
-           "m.id, m.name AS title, m.image AS poster " .
-           "FROM Category c " .
-           "LEFT JOIN Movie m ON m.id_category = c.id " .
-           "ORDER BY c.id, m.id";
+        $sql = "SELECT c.id AS category_id, c.name AS category_name, " .
+            "m.id, m.name AS title, m.image AS poster " .
+            "FROM Category c " .
+               "LEFT JOIN Movie m ON m.id_category = c.id AND (:age = 0 OR m.min_age <= :age OR m.min_age IS NULL) " .
+            "ORDER BY c.id, m.id";
     
     $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':age', $age, PDO::PARAM_INT);
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
     
@@ -91,6 +92,45 @@ function addMovie($movieData){
         error_log("Insert error: " . $e->getMessage());
         return false;
     }
+}
+
+function addProfile($profileData){
+    try {
+        $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    } catch (PDOException $e) {
+        error_log("DB connection error: " . $e->getMessage());
+        return false;
+    }
+
+    $sql = "INSERT INTO Profile (name, avatar, min_age) 
+            VALUES (:name, :avatar, :min_age)";
+    $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':name', $profileData['name']);
+    $stmt->bindParam(':avatar', $profileData['avatar']);
+    $stmt->bindParam(':min_age', $profileData['min_age']);
+
+    try {
+        $stmt->execute();
+        return true;
+    } catch (PDOException $e) {
+        error_log("Insert error: " . $e->getMessage());
+        return false;
+    }
+}
+
+function getAllProfiles(){
+    try {
+        $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    } catch (PDOException $e) {
+        error_log("DB connection error: " . $e->getMessage());
+        return false;
+    }
+
+    $sql = "SELECT id, name, avatar, min_age FROM Profile ORDER BY name";
+    $stmt = $cnx->prepare($sql);
+    $stmt->execute();
+    $profiles = $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $profiles;
 }
 
 function getMovieById($id){

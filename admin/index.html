@@ -5,6 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./component/MovieForm/style.css" />
+    <link rel="stylesheet" href="./component/ProfileForm/style.css" />
   </head>
   <body>
     <section id="log"></section>
@@ -13,7 +15,9 @@
     <script type="module">
       import { Log } from "./component/Log/script.js";
       import { MovieForm } from "./component/MovieForm/script.js";
+      import { ProfileForm } from "./component/ProfileForm/script.js";
       import { DataMovie } from "./data/dataMovie.js";
+      import { DataProfile } from "./data/dataProfile.js";
 
       window.C = {};
 
@@ -26,6 +30,22 @@
           let formData = new FormData(form);
 
           let response = await DataMovie.add(formData);
+          V.renderLog("Succès : " + response.message);
+          form.reset();
+        } catch (error) {
+          V.renderLog("Erreur : " + error.message);
+        }
+      };
+
+      C.handlerAddProfile = async function(event) {
+        event.preventDefault();
+        V.renderLog("Envoi du formulaire en cours...");
+
+        try {
+          let form = document.getElementById('profile-form');
+          let formData = new FormData(form);
+
+          let response = await DataProfile.add(formData);
           V.renderLog("Succès : " + response.message);
           form.reset();
         } catch (error) {
@@ -47,10 +67,11 @@
 
       V.renderMovieForm = function () {
         let formContainer = document.querySelector("#form-container");
-        formContainer.innerHTML = MovieForm.format();
+        formContainer.innerHTML = MovieForm.format() + ProfileForm.format();
 
-        // Attach event listener after rendering
+        // Attach event listeners after rendering
         document.getElementById('movie-form').addEventListener('submit', C.handlerAddMovie);
+        document.getElementById('profile-form').addEventListener('submit', C.handlerAddProfile);
       };
 
       C.start();

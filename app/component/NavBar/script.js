@@ -12,10 +12,20 @@ try {
 
 let NavBar = {};
 
-NavBar.format = function (hAbout, hHome) {
+NavBar.format = function (hAbout, hHome, profiles, hProfileChange, selectedProfileId) {
   let html = template;
   html = html.replace("{{hAbout}}", hAbout);
   html = html.replace("{{hHome}}", hHome);
+  html = html.replace("{{hProfileChange}}", hProfileChange);
+
+  let options = '';
+  if (profiles) {
+    for (const profile of profiles) {
+      const selected = selectedProfileId === profile.id ? ' selected' : '';
+      options += `<option value="${profile.id}"${selected}>${profile.name}</option>`;
+    }
+  }
+  html = html.replace("{{profileOptions}}", options);
   return html;
 };
 

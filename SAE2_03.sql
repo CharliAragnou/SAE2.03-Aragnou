@@ -110,16 +110,38 @@ ALTER TABLE `Category`
 ALTER TABLE `Movie`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
+-- --------------------------------------------------------
+
 --
--- Contraintes pour les tables déchargées
+-- Structure de la table `Profile`
+--
+
+CREATE TABLE `Profile` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
+  `min_age` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Index pour les tables déchargées
 --
 
 --
--- Contraintes pour la table `Movie`
+-- Index pour la table `Profile`
 --
-ALTER TABLE `Movie`
-  ADD CONSTRAINT `movie_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `Category` (`id`);
-COMMIT;
+ALTER TABLE `Profile`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `Profile`
+--
+ALTER TABLE `Profile`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

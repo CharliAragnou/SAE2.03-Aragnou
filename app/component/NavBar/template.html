@@ -3,4 +3,11 @@
     <li class="navbar__item" onclick="{{hHome}}">Films</li>
     <li class="navbar__item" onclick="{{hAbout}}">About</li>
   </ul>
+  <div class="profile-selector">
+    <label for="profile-select">Profil :</label>
+    <select id="profile-select" onchange="{{hProfileChange}}">
+      <option value="">Choisir un profil</option>
+      {{profileOptions}}
+    </select>
+  </div>
 </nav>

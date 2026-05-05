@@ -22,7 +22,8 @@ require("model.php");
 
 
 function readMoviesController(){
-    $movies = getAllMovies();
+    $age = isset($_REQUEST['age']) && is_numeric($_REQUEST['age']) ? (int)$_REQUEST['age'] : 0;
+    $movies = getAllMovies($age);
     return $movies;
 }
 
@@ -83,4 +84,37 @@ function addMovieController(){
     } else {
         return ['success' => false, 'message' => 'Erreur lors de l\'ajout du film.'];
     }
+}
+
+function addProfileController(){
+    // Validate required fields
+    if (!isset($_POST['name']) || empty(trim($_POST['name']))) {
+        return ['success' => false, 'message' => 'Champ obligatoire manquant : name'];
+    }
+
+    // Validate min_age
+    $min_age = isset($_POST['min_age']) ? (int)$_POST['min_age'] : 0;
+    if ($min_age < 0) {
+        return ['success' => false, 'message' => 'Restriction d\'âge invalide'];
+    }
+
+    // Prepare data
+    $profileData = [
+        'name' => trim($_POST['name']),
+        'avatar' => isset($_POST['avatar']) ? trim($_POST['avatar']) : null,
+        'min_age' => $min_age
+    ];
+
+    // Call model
+    $result = addProfile($profileData);
+    if ($result) {
+        return ['success' => true, 'message' => 'Le profil a été ajouté avec succès.'];
+    } else {
+        return ['success' => false, 'message' => 'Erreur lors de l\'ajout du profil.'];
+    }
+}
+
+function readProfilesController(){
+    $profiles = getAllProfiles();
+    return $profiles;
 }

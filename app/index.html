@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/base.css" />
     <link rel="stylesheet" href="./component/MovieDetail/style.css" />
     <link rel="stylesheet" href="./component/MovieCategory/style.css" />
+    <link rel="stylesheet" href="./component/NavBar/style.css" />
   </head>
 
   <body>
@@ -17,6 +18,7 @@
     <script type="module">
       import { NavBar } from "./component/NavBar/script.js";
       import { DataMovie } from "./data/dataMovie.js";
+      import { DataProfile } from "./data/dataProfile.js";
       import { MovieDetail } from "./component/MovieDetail/script.js";
       import { Movie } from "./component/Movie/script.js";
       import { MovieCategory } from "./component/MovieCategory/script.js";
@@ -26,6 +28,11 @@
       // Une fois l'application terminée, on pourrait remettre let C.
       window.C = {};
 
+      // Variables globales pour le profil actif
+      window.activeProfileId = null;
+      window.activeProfileAge = 0;
+      window.profiles = [];
+
       C.handlerAbout = function () {
         alert(
           "Ceci est une base de projet pour la SAE2.03 édition 2025. Bonne chance !"
@@ -33,6 +40,17 @@
       };
 
       C.handlerList = function () {
+        V.renderMovies();
+      };
+
+      C.handlerProfileChange = function (event) {
+        const selectedId = event.target.value;
+        window.activeProfileId = selectedId ? parseInt(selectedId) : null;
+        const selectedProfile = window.profiles.find(p => p.id === window.activeProfileId);
+        window.activeProfileAge = selectedProfile ? selectedProfile.min_age : 0;
+        console.log("Profil actif changé :", window.activeProfileId, window.activeProfileAge);
+        V.renderNavBar("C.handlerAbout()", window.profiles, window.activeProfileId);
+        // Ici, on pourrait recharger les films en fonction du profil (filtrage par âge)
         V.renderMovies();
       };
 
@@ -48,9 +66,16 @@
         }
       };
 
-      C.start = function () {
-        V.renderNavBar("C.handlerAbout()");
-        V.renderMovies();
+      C.start = async function () {
+        try {
+          window.profiles = await DataProfile.read();
+          V.renderNavBar("C.handlerAbout()", window.profiles, window.activeProfileId);
+          V.renderMovies();
+        } catch (error) {
+          console.error("Erreur lors du chargement des profils :", error);
+          V.renderNavBar("C.handlerAbout()", []);
+          V.renderMovies();
+        }
       };
 
       // Vue (contient tout ce qui est relatif à l'affichage)
@@ -63,9 +88,9 @@
        * Elle sélectionne l'élément HTML avec l'ID "header" et y insère le contenu
        * formaté par le composant NavBar.
        */
-      V.renderNavBar = function (hAbout) {
+      V.renderNavBar = function (hAbout, profiles, selectedProfileId) {
         let header = document.querySelector("#header");
-        header.innerHTML = NavBar.format(hAbout, "C.handlerList()");
+        header.innerHTML = NavBar.format(hAbout, "C.handlerList()", profiles, "C.handlerProfileChange(event)", selectedProfileId);
       };
 
       V.renderMovies = async function () {
@@ -73,7 +98,12 @@
         content.innerHTML = `<div class="font-sans" style="padding: 2rem; text-align: center;">Chargement des films...</div>`;
 
         try {
-          let categories = await DataMovie.requestMovies();
+          let categories = await DataMovie.requestMovies(window.activeProfileAge || 0);
+          categories = categories.filter(category => category.movies && category.movies.length > 0);
+          if (categories.length === 0) {
+            content.innerHTML = `<div class="font-sans" style="padding: 2rem; text-align: center; font-weight: 600;">Aucun film disponible pour votre tranche d'âge.</div>`;
+            return;
+          }
           let html = '';
           for (let category of categories) {
             html += MovieCategory.format(category);
