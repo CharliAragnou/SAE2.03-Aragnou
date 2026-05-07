@@ -1,0 +1,108 @@
+.movie-search-section {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  background: #fff;
+}
+
+.movie-search-section h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.movie-search-form {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.movie-search-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-search-form label {
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.movie-search-form input,
+.movie-search-form select {
+  padding: 0.65rem 0.8rem;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.movie-search-form .search-btn {
+  padding: 0.75rem 1.2rem;
+  font-size: 1rem;
+  border: none;
+  background: #0a6cff;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.movie-search-form .search-btn:hover {
+  background: #075dd9;
+}
+
+.movie-search-results {
+  display: grid;
+  gap: 1rem;
+}
+
+.movie-search-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  display: grid;
+  gap: 0.75rem;
+  background: #fafafa;
+}
+
+.movie-search-card h3 {
+  margin: 0;
+}
+
+.movie-search-card p {
+  margin: 0.25rem 0;
+}
+
+.movie-search-card .movie-status {
+  font-weight: 700;
+}
+
+.movie-search-card .movie-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.movie-search-card button {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.movie-search-card .featured-btn {
+  background: #0a6cff;
+  color: #fff;
+}
+
+.movie-search-card .unfeatured-btn {
+  background: #ccc;
+  color: #222;
+}
+
+.movie-search-empty {
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  text-align: center;
+}

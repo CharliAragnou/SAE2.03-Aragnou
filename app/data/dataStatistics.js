@@ -1,0 +1,20 @@
+let SERVER_SCRIPT_URL = window.location.origin + '/~aragnou1/SAE2.03-Aragnou/server/script.php';
+
+const DataStatistics = {
+  read: async function() {
+    try {
+      const url = SERVER_SCRIPT_URL + "?todo=readstatistics";
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Erreur lors de la récupération des statistiques :", error);
+      throw error;
+    }
+  }
+};
+
+export default DataStatistics;

@@ -64,7 +64,8 @@ CREATE TABLE `Movie` (
   `id_category` int(11) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `trailer` varchar(255) DEFAULT NULL,
-  `min_age` int(11) DEFAULT NULL
+  `min_age` int(11) DEFAULT NULL,
+  `featured` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -142,6 +143,43 @@ ALTER TABLE `Profile`
 --
 ALTER TABLE `Profile`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Favorite`
+--
+
+CREATE TABLE `Favorite` (
+  `id` int(11) NOT NULL,
+  `id_profile` int(11) NOT NULL,
+  `id_movie` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Index pour la table `Favorite`
+--
+ALTER TABLE `Favorite`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_profile_movie` (`id_profile`, `id_movie`),
+  ADD KEY `id_movie` (`id_movie`);
+
+--
+-- AUTO_INCREMENT pour la table `Favorite`
+--
+ALTER TABLE `Favorite`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `Favorite`
+--
+ALTER TABLE `Favorite`
+  ADD CONSTRAINT `fk_favorite_movie` FOREIGN KEY (`id_movie`) REFERENCES `Movie` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_favorite_profile` FOREIGN KEY (`id_profile`) REFERENCES `Profile` (`id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

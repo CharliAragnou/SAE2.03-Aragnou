@@ -1,0 +1,34 @@
+.movie-category {
+  margin-bottom: 3rem;
+  padding: 0 2rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.category-name {
+  font-size: 1.6rem;
+  margin: 3rem 0 1.5rem 0;
+  padding-bottom: 1.2rem;
+  border-bottom: 2px solid rgba(141, 198, 63, 0.5);
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.category-name::after {
+  content: 'View all (20) >';
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-left: auto;
+  font-weight: 500;
+}
+
+.category-movies {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}

@@ -1,0 +1,24 @@
+<nav class="navbar">
+  <div class="navbar__brand">
+    <img src="./component/NavBar/all4_logo.png" alt="All4 logo" class="navbar__logo" />
+  </div>
+  <ul class="navbar__list">
+    <li class="navbar__item" onclick="{{hHome}}">Home</li>
+    <li class="navbar__item" onclick="{{hStatistics}}">Statistiques</li>
+    <li class="navbar__item" onclick="{{hAbout}}">About</li>
+  </ul>
+  <div class="navbar-search">
+    <input id="search-input" type="search" placeholder="Rechercher un film..." value="{{searchQuery}}" onkeyup="{{hSearch}}" />
+    <button class="search-button" type="button" onclick="{{hSearchClick}}">Rechercher</button>
+  </div>
+  <div class="profile-selector">
+    <span class="profile-selector-avatar">{{profileAvatar}}</span>
+    <label for="profile-select">Profil :</label>
+    <select id="profile-select" onchange="{{hProfileChange}}">
+      <option value="">Choisir un profil</option>
+      {{profileOptions}}
+    </select>
+  </div>
+</nav>
+
+  

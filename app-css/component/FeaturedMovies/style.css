@@ -1,0 +1,226 @@
+.featured-section {
+  width: 100%;
+  background: #0d0f11;
+  padding: 0;
+  margin-bottom: 2.5rem;
+  overflow: visible;
+}
+
+
+.featured-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  overflow: visible;
+  padding: 2rem;
+}
+
+.featured-hero {
+  position: relative;
+  width: 100%;
+  margin-top: 4rem;
+}
+
+.featured-hero-card {
+  position: relative;
+  width: 100%;
+  min-height: 580px;
+  height: clamp(580px, 75vh, 660px);
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+  background: transparent;
+}
+
+.featured-hero-media {
+  position: relative;
+  min-height: 560px;
+  height: clamp(560px, 75vh, 660px);
+}
+
+.featured-hero-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.75);
+}
+
+.featured-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.85) 100%);
+  display: flex;
+  align-items: stretch;
+}
+
+ .featured-hero-copy {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  width: auto;
+  max-width: 45rem;
+  color: #f5f8f7;
+}
+
+.featured-hero-label {
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  color: #8dc63f;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.featured-hero-title {
+  margin: 0 0 1rem 0;
+  font-size: clamp(3rem, 4vw, 4.5rem);
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+.featured-hero-description {
+  margin: 0 0 1.5rem 0;
+  max-width: 45rem;
+  color: rgba(255, 255, 255, 0.80);
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.featured-play-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #b8ff97;
+  color: #0d0f10;
+  border: none;
+  padding: 0.8rem 4rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
+}
+
+.featured-play-button::before {
+  content: '▶';
+  display: inline-flex;
+  margin-right: 0.9rem;
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+
+
+.featured-secondary-card {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: min(320px, 36vw);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  min-height: auto;
+  background: rgba(12, 12, 12, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.featured-secondary-media {
+  width: 100%;
+  min-height: 170px;
+  height: 170px;
+  overflow: hidden;
+  background: #070707;
+}
+
+.featured-secondary-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+
+
+
+
+
+
+.featured-secondary-label {
+  margin: 0 0 0.6rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.featured-secondary-title {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  color: #ffffff;
+}
+
+.featured-empty {
+  padding: 2rem;
+  text-align: center;
+  color: #b8bec4;
+  font-style: italic;
+  font-family: "4text.medium.lowercase", "4text.medium.uppercase", "4text.medium.numbers", "4text.medium.punctuation", "4text.medium.currency", "4text.medium.maths", Trebuchet MS, Lucida Sans Unicode, Lucida Grande, Lucida Sans, Arial, sans-serif;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.featured-section .movie-card {
+  background: rgba(16, 16, 16, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  border-radius: 0.5rem;
+}
+
+
+
+.featured-section .movie-poster {
+  height: 320px;
+  object-fit: cover;
+}
+
+.featured-section .movie-info {
+  padding: 1.15rem 1rem 1.25rem;
+  background: linear-gradient(180deg, rgba(13, 13, 13, 0) 0%, rgba(13, 13, 13, 0.98) 100%);
+}
+
+.featured-section .movie-title {
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.4;
+  color: #f8fafb;
+}
+
+.featured-section .movie-favorite-btn {
+  top: 12px;
+  right: 12px;
+  background: rgba(13, 13, 13, 0.8);
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+}
+
+.featured-section .movie-favorite-btn:hover {
+  background: rgba(13, 13, 13, 0.95);
+  border-color: rgba(141, 198, 63, 0.5);
+  color: #8dc63f;
+}

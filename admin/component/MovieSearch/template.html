@@ -1,0 +1,32 @@
+<section class="movie-search-section">
+  <h2>Rechercher un film</h2>
+  <form id="movie-search-form" class="movie-search-form">
+    <div class="form-group">
+      <label for="search-title">Titre</label>
+      <input type="text" id="search-title" name="search" placeholder="Titre partiel ou complet">
+    </div>
+    <div class="form-group">
+      <label for="search-category">Catégorie</label>
+      <select id="search-category" name="category">
+        <option value="0">Toutes les catégories</option>
+        <option value="1">Action</option>
+        <option value="2">Comédie</option>
+        <option value="3">Drame</option>
+        <option value="4">Science-fiction</option>
+        <option value="5">Animation</option>
+        <option value="6">Thriller</option>
+        <option value="7">Horreur</option>
+        <option value="8">Aventure</option>
+        <option value="9">Fantaisie</option>
+        <option value="10">Documentaire</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="search-year">Année de sortie</label>
+      <input type="number" id="search-year" name="year" min="1900" max="2030" placeholder="2024">
+    </div>
+    <button type="submit" class="search-btn">Rechercher</button>
+  </form>
+
+  <div id="movie-search-results" class="movie-search-results"></div>
+</section>

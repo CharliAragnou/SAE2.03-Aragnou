@@ -1,0 +1,38 @@
+.featured-section {
+  background: linear-gradient(135deg, rgba(17, 17, 17, 0.02) 0%, rgba(17, 17, 17, 0.04) 100%);
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+}
+
+.featured-header {
+  padding: 0 2rem;
+  max-width: 1000px;
+  margin: 0 auto 1.5rem;
+}
+
+.featured-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #111111;
+  font-family: var(--ff-sans);
+  font-weight: 700;
+}
+
+.featured-movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 0 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.featured-empty {
+  padding: 2rem;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  font-family: var(--ff-sans);
+  margin: 0 auto;
+  max-width: 1000px;
+}

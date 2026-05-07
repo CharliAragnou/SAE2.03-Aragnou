@@ -1,0 +1,16 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  background: #0d0f11;
+  color: #ffffff;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
