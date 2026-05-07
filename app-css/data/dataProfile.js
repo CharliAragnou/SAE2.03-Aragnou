@@ -1,6 +1,5 @@
 // URL du serveur à partir du module dataProfile.js
-let SERVER_SCRIPT_URL = window.location.origin + '/~aragnou1/SAE2.03-Aragnou/server/script.php';
-
+let SERVER_SCRIPT_URL = "..";
 let DataProfile = {};
 
 DataProfile.read = async function() {

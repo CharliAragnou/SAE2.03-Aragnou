@@ -1,5 +1,4 @@
-let SERVER_SCRIPT_URL = window.location.origin + '..';
-
+let SERVER_SCRIPT_URL = "..";
 const DataStatistics = {
   read: async function() {
     try {

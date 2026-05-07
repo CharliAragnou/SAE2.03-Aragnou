@@ -1,6 +1,5 @@
 // URL du serveur à partir du module dataFavorite.js
-let SERVER_SCRIPT_URL = window.location.origin + '..';
-
+let SERVER_SCRIPT_URL = "..";
 let DataFavorite = {};
 
 DataFavorite.read = async function(profileId) {

@@ -1,6 +1,5 @@
 // URL du serveur à partir du module dataMovie.js
-let SERVER_SCRIPT_URL = window.location.origin + '..';
-
+let SERVER_SCRIPT_URL = "..";
 let DataMovie = {};
 
 DataMovie.add = async function(formData) {

@@ -1,5 +1,4 @@
-let SERVER_SCRIPT_URL = window.location.origin + '..';
-
+let SERVER_SCRIPT_URL = "..";
 const DataFeatured = {
   read: async function(age = 0) {
     try {
