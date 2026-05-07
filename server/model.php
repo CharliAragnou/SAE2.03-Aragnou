@@ -14,9 +14,9 @@
  * DBPWD : Mot de passe pour se connecter à la base de données.
  */
 define("HOST", "localhost");
-define("DBNAME", "aragnou1");
-define("DBLOGIN", "aragnou1");
-define("DBPWD", "aragnou1");
+define("DBNAME", "SAE203");
+define("DBLOGIN", "usersae203");
+define("DBPWD", "charliamaykrc202*");
 
 
 function getDatabaseConnection(){

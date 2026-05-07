@@ -1,4 +1,4 @@
-let SERVER_SCRIPT_URL = window.location.origin + '/~aragnou1/SAE2.03-Aragnou/server/script.php';
+let SERVER_SCRIPT_URL = window.location.origin + '..';
 
 const DataStatistics = {
   read: async function() {

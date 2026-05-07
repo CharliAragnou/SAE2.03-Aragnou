@@ -1,5 +1,5 @@
 // URL du serveur à partir du module dataMovie.js
-let SERVER_SCRIPT_URL = window.location.origin + '/~aragnou1/SAE2.03-Aragnou/server/script.php';
+let SERVER_SCRIPT_URL = window.location.origin + '..';
 
 let DataMovie = {};
 
